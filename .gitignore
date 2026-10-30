@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Environment secrets
+.env
+.env.*
+
+# Database
+*.sqlite
+*.sqlite3
+
+# Node dependencies
+node_modules/
+
+# Local IPFS executable
+/ipfs.exe
+
+# Private datasets (if applicable)
+/Dataset/

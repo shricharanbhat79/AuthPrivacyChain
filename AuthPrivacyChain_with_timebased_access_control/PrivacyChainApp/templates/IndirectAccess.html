@@ -1,0 +1,163 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Privacy Chain</title>
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('{% static "images/idd.webp" %}') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .main {
+            width: 80%;
+            background-color: rgba(0, 0, 51, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .menu_nav {
+            margin-bottom: 20px;
+        }
+
+        .menu_nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .menu_nav a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 6px;
+            background: #007bff;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+
+        .menu_nav a:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+
+        tr:hover {
+            background: #ddd;
+        }
+
+        h2 {
+            color: #f8f9fa;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #f8f9fa;
+        }
+
+        input[type="submit"] {
+            background: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="submit"]:hover {
+            background: #218838;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="menu_nav">
+            <ul>
+                <li><a href="{% url 'AccessShareData' %}">Access Share Data</a></li>
+                <li><a href="{% url 'IndirectAccess' %}">Indirect Access Control</a></li>
+                <li><a href="{% url 'Graph' %}">Smart Contract Computation Graph</a></li>
+                <li><a href="{% url 'index' %}">Logout</a></li>
+            </ul>
+        </div>
+
+        <h2>Indirect Access Screen</h2>
+       
+
+        <form name="f1" method="post" action="{% url 'IndirectAccessAction' %}" onsubmit="return validate(this);">
+            {% csrf_token %}
+            <p>{{ data|safe }}</p>
+            <table>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <input type="submit" value="Indirect Access">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

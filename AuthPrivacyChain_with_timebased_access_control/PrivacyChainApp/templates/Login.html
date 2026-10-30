@@ -1,0 +1,149 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Privacy Chain</title>
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+
+    <style>
+        /* Full-screen responsive background image */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+			background: url('/static/images/loi.webp') no-repeat center center fixed;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-size: contain; /* Ensures the full image is visible on smaller screens */
+            }
+        }
+
+        /* Form container */
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 40px;
+            width: 400px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .form-container h2 {
+            font-size: 2rem;
+            color: #222;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .form-container input, .form-container select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .form-container .button-group {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .form-container input[type="submit"],
+        .form-container input[type="reset"] {
+            background-color: #2d5ef6;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            width: 45%;
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        .form-container input[type="submit"]:hover,
+        .form-container input[type="reset"]:hover {
+            background-color: #1a3db3;
+            transform: scale(1.08);
+        }
+
+        /* Navigation menu */
+        .menu_nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .menu_nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 12px 24px;
+            border-radius: 6px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .menu_nav a:hover {
+            background-color: #ffcc00;
+            color: #333;
+            transform: translateY(-4px);
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu_nav">
+        <ul>
+            <li><a href="{% url 'index' %}" class="active">Home</a></li>
+            <li><a href="{% url 'Login' %}">Data Owner</a></li>
+            <li><a href="{% url 'Login' %}">Data Users</a></li>
+            <li><a href="{% url 'Signup' %}">Data User Signup Here</a></li>
+        </ul>
+    </div>
+
+    <div class="form-container">
+        <form name="f1" method="post" action="{% url 'LoginAction' %}" onsubmit="return validate(this);">
+            {% csrf_token %}
+            <h2>User Login Screen</h2>
+            <center>{{ data }}</center>
+            <input type="text" name="t1" placeholder="Username" required>
+            <input type="password" name="t2" placeholder="Password" required>
+            <select name="t3" required>
+                <option value="Data Owner">Data Owner</option>
+                <option value="Doctor">Doctor</option>
+                <option value="Researcher">Researcher</option>
+            </select>
+            <div class="button-group">
+                <input type="submit" value="Login">
+                <input type="reset" value="Reset">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

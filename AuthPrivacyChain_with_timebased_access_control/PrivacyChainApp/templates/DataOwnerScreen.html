@@ -1,0 +1,125 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Privacy Chain</title>
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background: url('{% static "images/dw.webp" %}') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* .header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            animation: slideIn 1s ease-in-out;
+        } */
+
+        .menu_nav {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .menu_nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .menu_nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 15px 30px;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #ff9800, #ff5722);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: inline-block;
+        }
+
+        .menu_nav a:hover {
+            background: linear-gradient(45deg, #e65100, #bf360c);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .content_bg {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease-in-out;
+            text-align: center;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: red;
+        }
+
+        .data-owner-img {
+            width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <!-- <h1>AuthPrivacyChain: A Blockchain-Based Access Control Framework</h1> -->
+    </div>
+
+    <!-- <img src="{% static 'images/dw.webp' %}" alt="Data Owner" class="data-owner-img"> -->
+
+    <div class="menu_nav">
+        <ul>
+            <li><a href="{% url 'UploadImage' %}">Upload Data</a></li>
+            <li><a href="{% url 'viewnotification' %}">View Notification</a></li>
+            <li><a href="{% url 'settime' %}">Set Time</a></li>
+            <li><a href="{% url 'RevokeUser' %}">Revoke User</a></li>
+            <li><a href="{% url 'index' %}">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="content_bg">
+        <p class="message">{{ data|safe }}</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Privacy Chain</title>
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background: url('https://imgs.search.brave.com/0KTAEUvcPCJc57etJprHQkBAY6No-fRXbRVXiQO9PgI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vcGhvdG9z/L2Jsb2NrY2hhaW4t/Zm9ybWVkLWJ5LWJp/bmFyaWVzLWFuZC1u/ZXR3b3JrLXBpY3R1/cmUtaWQxMzIyNDIx/MDI4P2s9MjAmbT0x/MzIyNDIxMDI4JnM9/NjEyeDYxMiZ3PTAm/aD1qMXNnZEdqVG1K/U1ZEYXplUkpTd3E0/ZUo5Nl9EMVg0WVJD/VUI0a0NmMmlnPQ') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 30px;
+            width: 350px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .form-container h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .form-container input, .form-container select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-container .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-container input[type="submit"] {
+            background-color: #2d5ef6;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            width: 48%;
+            padding: 12px;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #1a3db3;
+            transform: scale(1.05);
+        }
+
+        .menu_nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .menu_nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .menu_nav a:hover {
+            background-color: #ffcc00;
+            color: #333;
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu_nav">
+        <ul>
+            <li><a href="{% url 'index' %}" class="active">Home</a></li>
+            <li><a href="{% url 'Login' %}">Data Owner</a></li>
+            <li><a href="{% url 'Login' %}">Data Users</a></li>
+            <li><a href="{% url 'Signup' %}">Data User Signup Here</a></li>
+        </ul>
+    </div>
+
+    <div class="form-container">
+        <form name="f1" method="post" action="{% url 'SignupAction' %}" onsubmit="return validate(this);">
+            {% csrf_token %}
+            <h2>Data User/Owner Signup Screen</h2>
+            <center>{{ data }}</center>
+            <input type="text" name="t1" placeholder="Username" required>
+            <input type="password" name="t2" placeholder="Password" required>
+            <input type="email" name="t4" placeholder="Email" required>
+            <select name="t3" required>
+                <option value="Data Owner">Data Owner</option>
+                <option value="Doctor">Doctor</option>
+                <option value="Researcher">Researcher</option>
+            </select>
+            <div class="button-group">
+                <input type="submit" value="Submit">
+                <input type="reset" value="Reset">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
