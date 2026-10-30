@@ -16,7 +16,7 @@ Install the following tools before running the project:
 2. Navigate to `hello-eth/node_modules/.bin`.
 3. Run the `Run Blockchain` file.
 4. Once it starts, a Mnemonic phrase will be displayed.
-5. Keep this phrase locally for Ganache configuration. Never publish it on GitHub.
+5. Keep this phrase locally for Ganache configuration.
 
 ## Step 2: Configure Ganache
 
@@ -68,5 +68,3 @@ The local server address will be:
 ---
 
 **Important:** Ganache, IPFS and the application server should remain running while testing the project.
-
-**Security:** Never upload private Mnemonic phrases, wallet credentials or private keys to GitHub.
